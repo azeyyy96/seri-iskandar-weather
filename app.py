@@ -62,7 +62,7 @@ def load(table):
 
 
 st.title('🌦️ Seri Iskandar Weather Intelligence')
-st.caption('TFB2093 IoT project · Perak, Malaysia · Open-Meteo data · Neon PostgreSQL · Date DD:MM:YYYY · Time HH:MM:SS · MYT (UTC+8)')
+st.caption('TFB2093 IoT project · Perak, Malaysia · Open-Meteo data · Neon PostgreSQL · Date DD/MM/YYYY · Time HH:MM:SS · MYT (UTC+8)')
 st.info('Current conditions are Open-Meteo model-based estimates, not measurements from our own physical weather station.')
 if st.button('🔄 Refresh saved data'):
     st.cache_data.clear()
