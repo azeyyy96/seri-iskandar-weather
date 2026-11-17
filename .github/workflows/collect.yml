@@ -1,0 +1,23 @@
+name: Collect Seri Iskandar weather
+on:
+  schedule:
+    # Two attempts/hour to reduce missed hours; first successful insert wins.
+    - cron: '17,47 * * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install database and API clients
+        run: python -m pip install 'psycopg[binary]>=3.2,<4' 'requests>=2.32,<3'
+      - name: Fetch weather and save to Neon
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: python collector.py
